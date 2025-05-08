@@ -5,7 +5,7 @@ const axios = require('axios');
 
 const app = express();
 const PORT = 3000;
-const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL_HERE'; // ⚠️ Replace this only
+const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l5xyJ12DOIf3GWQatSNJKepjL_d7r3FL5-QxXhh_msIOjXj4WMEECZjxz'; 
 
 app.use(requestIp.mw());
 
