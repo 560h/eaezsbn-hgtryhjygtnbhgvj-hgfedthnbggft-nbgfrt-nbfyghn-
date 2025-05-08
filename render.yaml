@@ -1,6 +1,10 @@
 services:
   - type: web
-    name: horizon-ip-logger
+    name: iswearitsnotwhatyouthink
     env: node
+    plan: free
     buildCommand: npm install
-    startCommand: npm start
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 3000
