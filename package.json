@@ -1,7 +1,7 @@
 {
   "name": "roblox-profile-ip-logger",
   "version": "1.0.0",
-  "description": "nothing istg",
+  "description": "nothing really",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
