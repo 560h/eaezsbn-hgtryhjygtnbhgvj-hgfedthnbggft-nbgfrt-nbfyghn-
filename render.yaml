@@ -1,10 +1,9 @@
 services:
   - type: web
-    name: iswearitsnotwhatyouthink
-    env: node
-    plan: free
+    name: discord-webhook-proxy
+    runtime: node
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
     envVars:
       - key: PORT
         value: 3000
