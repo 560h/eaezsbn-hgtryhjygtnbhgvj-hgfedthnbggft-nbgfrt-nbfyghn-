@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: discord-webhook-proxy
+    name: exiled
     runtime: node
     buildCommand: npm install
     startCommand: npm start
