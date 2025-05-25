@@ -1,9 +1,0 @@
-{
-  "name": "cool-image",
-  "version": "1.0.0",
-  "main": "app.py",
-  "scripts": {
-    "start": "python3 app.py"
-  },
-  "dependencies": {}
-}
