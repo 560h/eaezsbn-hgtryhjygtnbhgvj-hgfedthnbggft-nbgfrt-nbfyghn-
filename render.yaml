@@ -1,7 +1,7 @@
 services:
   - type: web
     env: python
-    name: image-logger
+    name: cool-pic
     plan: free
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python3 app.py"
