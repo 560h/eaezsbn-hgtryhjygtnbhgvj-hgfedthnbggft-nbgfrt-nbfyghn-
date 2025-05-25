@@ -1,12 +1,9 @@
 {
-  "name": "exiled",
+  "name": "cool-image",
   "version": "1.0.0",
-  "description": "exiled",
-  "main": "index.html",
+  "main": "app.py",
   "scripts": {
-    "start": "live-server"
+    "start": "python3 app.py"
   },
-  "dependencies": {
-    "live-server": "^1.2.1"
-  }
+  "dependencies": {}
 }
