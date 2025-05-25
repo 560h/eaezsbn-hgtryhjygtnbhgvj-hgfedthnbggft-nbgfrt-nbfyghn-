@@ -1,13 +1,10 @@
 services:
   - type: web
-    name: image-logger
     env: python
+    name: image-logger
     plan: free
-    buildCommand: ""
-    startCommand: python3 app.py
-    healthCheckPath: "/image.png"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python3 app.py"
     envVars:
-      - key: DISCORD_WEBHOOK_URL
-        value: "https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l5xyJ12DOIf3GWQatSNJKepjL_d7r3FL5-QxXhh_msIOjXj4WMEECZjxz"
       - key: PUBLIC_URL
-        value: "https://yourapp.onrender.com/image.png"
+        value: "https://tse1.mm.bing.net/th?id=OIP.DgCeXIhvyFpTUJwJ0io8PgHaHa&pid=Api&P=0&h=180"
