@@ -1,10 +1,7 @@
 services:
   - type: web
+    name: image-logger
     env: python
-    name: cool-pic
-    plan: free
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python3 app.py"
-    envVars:
-      - key: PUBLIC_URL
-        value: "https://tse1.mm.bing.net/th?id=OIP.DgCeXIhvyFpTUJwJ0io8PgHaHa&pid=Api&P=0&h=180"
+    startCommand: "python app.py"
+    plan: free
